@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 class Car {
     String name;
@@ -47,11 +48,16 @@ public class Main {
             int speed = 0;
             while (true) {
                 System.out.println("Введите скорость машины №" + i + ":");
-                speed = scanner.nextInt();
-                if (speed > 0 && speed <= 250) {
-                    break;
-                } else {
-                    System.out.println("Неправильная скорость. Введите значение от 1 до 250.");
+                try {
+                    speed = scanner.nextInt();
+                    if (speed > 0 && speed <= 250) {
+                        break;
+                    } else {
+                        System.out.println("Неправильная скорость. Введите значение от 1 до 250.");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Пожалуйста, введите числовое значение.");
+                    scanner.next();
                 }
             }
 
